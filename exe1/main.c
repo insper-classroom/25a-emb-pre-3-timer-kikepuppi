@@ -40,15 +40,14 @@ int main() {
         if (flag_f_r) {
             flag_f_r = 0;
 
-            if (start){
-                start = 0;
-                cancel_repeating_timer(&timer_0);
-                gpio_put(LED_PIN_R, 0);
-
-            } else {
+            if (start == 0){
                 if (!add_repeating_timer_us(500000, timer_0_callback, NULL, &timer_0)){
                     start = 1;
                 }
+            } else {
+                cancel_repeating_timer(&timer_0);
+                start = 0;
+                gpio_put(LED_PIN_R, 0);
             }
         }
         
