@@ -38,13 +38,13 @@ int main() {
     while (true) {
         if (flag_f_r) {
             if (t0 == 0) {
-                t0 = time_ms_64(); 
+                t0 = time_us_64(); 
             }
         } else {
             if (t0 != 0) {
-                uint64_t tf = time_ms_64() - t0;
+                uint64_t tf = time_us_64() - t0;
                 t0 = 0;
-                if (tf >= 500) {  
+                if (tf >= 500000) {  
                     gpio_put(LED_PIN_R, !gpio_get(LED_PIN_R));
                 }
             }
