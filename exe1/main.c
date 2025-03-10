@@ -34,32 +34,28 @@ int main() {
 
     repeating_timer_t timer_0;
 
-    if (!add_repeating_timer_ms(500, 
-                                timer_0_callback,
-                                NULL, 
-                                &timer_0)) {
-        printf("Failed to add timer\n");
-    }
-
     int start = 0;
     while (true) {
 
         if (flag_f_r) {
+            flag_f_r = 0;
 
             if (start){
                 start = 0;
+                gpio_put(LED_PIN_R, 0);
                 cancel_repeating_timer(&timer_0);
+
             } else {
-                start = 1;
+                if (!add_repeating_timer_ms(500, timer_0_callback, NULL, &timer_0)){
+                    start = 1;
+                }
             }
-            flag_f_r = 0;
         }
         
-        if (start){
-            if(g_timer_0){
-                gpio_put(LED_PIN_R, !gpio_get(LED_PIN_R));
-                g_timer_0 = 0;
-            }
+        if (g_timer_0){
+            gpio_put(LED_PIN_R, !gpio_get(LED_PIN_R));
+            g_timer_0 = 0;
         }
     }
 }
+
