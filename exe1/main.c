@@ -42,20 +42,19 @@ int main() {
 
             if (start){
                 start = 0;
-                gpio_put(LED_PIN_R, 0);
                 cancel_repeating_timer(&timer_0);
+                gpio_put(LED_PIN_R, 0);
 
             } else {
-                if (!add_repeating_timer_ms(500, timer_0_callback, NULL, &timer_0)){
+                if (!add_repeating_timer_us(500000, timer_0_callback, NULL, &timer_0)){
                     start = 1;
                 }
             }
         }
         
         if (g_timer_0){
-            gpio_put(LED_PIN_R, !gpio_get(LED_PIN_R));
             g_timer_0 = 0;
+            gpio_put(LED_PIN_R, !gpio_get(LED_PIN_R));
         }
     }
 }
-
