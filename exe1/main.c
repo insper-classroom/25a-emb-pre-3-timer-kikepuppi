@@ -48,6 +48,7 @@ int main() {
 
             if (start){
                 start = 0;
+                cancel_repeating_timer(&timer_0);
             } else {
                 start = 1;
             }
