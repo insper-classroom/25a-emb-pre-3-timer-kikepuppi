@@ -43,8 +43,8 @@ int main() {
                 start = 1;
             } else {
                 cancel_repeating_timer(&timer_0);
-                start = 0;
                 gpio_put(LED_PIN_R, 0);
+                start = 0;
             }
         }
         

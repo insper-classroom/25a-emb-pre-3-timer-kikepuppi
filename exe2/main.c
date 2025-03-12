@@ -63,10 +63,8 @@ int main() {
             flag_r = 0;
 
             if (start_r == 0){
-                if (!add_repeating_timer_us(500000, timer_r_callback, NULL, &timer_r)){
-                    start_r = 1;
-                }
-
+                add_repeating_timer_ms(500, timer_r_callback, NULL, &timer_r);
+                start_r = 1;
             } else {
                 cancel_repeating_timer(&timer_r);
                 start_r = 0;
@@ -78,9 +76,8 @@ int main() {
             flag_g = 0;
 
             if (start_g == 0){
-                if (!add_repeating_timer_us(250000, timer_g_callback, NULL, &timer_g)){
-                    start_g = 1;
-                }
+                add_repeating_timer_ms(250, timer_g_callback, NULL, &timer_g);
+                start_g = 1;
             } else {
                 cancel_repeating_timer(&timer_g);
                 start_g = 0;
